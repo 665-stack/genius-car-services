@@ -6,7 +6,7 @@ import expert4 from '../../../images/experts/expert-4.jpg'
 import expert5 from '../../../images/experts/expert-5.jpg'
 import expert6 from '../../../images/experts/expert-6.png'
 import Expert from '../Expert/Expert';
-
+import './Experts.css'
 const experts = [
     { id: 1, name: "Will Smith", img: expert1 },
     { id: 2, name: "Tom cruise", img: expert2 },
@@ -17,7 +17,7 @@ const experts = [
 ]
 const Experts = () => {
     return (
-        <div className='container mt-5'>
+        <div className='container  mt-5'>
 
             <h2 className='text-primary text-center'>Our Experts</h2>
 

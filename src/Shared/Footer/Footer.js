@@ -5,7 +5,7 @@ const Footer = () => {
     const copyrightYear = 2022;
     return (
         <footer>
-            <p><small>Copyright @ {copyrightYear} Genius-Car-Services</small></p>
+            <p className='text-center'><small>Copyright @ {copyrightYear} Genius-Car-Services</small></p>
         </footer>
     );
 };

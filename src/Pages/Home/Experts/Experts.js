@@ -9,15 +9,15 @@ import Expert from '../Expert/Expert';
 
 const experts = [
     { id: 1, name: "Will Smith", img: expert1 },
-    { id: 1, name: "Tom cruise", img: expert2 },
-    { id: 1, name: "Dwayne Johnson", img: expert3 },
-    { id: 1, name: "Justin Bieber", img: expert4 },
-    { id: 1, name: "Cristiano Ronaldo", img: expert5 },
-    { id: 1, name: "Lionel Messi", img: expert6 },
+    { id: 2, name: "Tom cruise", img: expert2 },
+    { id: 3, name: "Dwayne Johnson", img: expert3 },
+    { id: 4, name: "Justin Bieber", img: expert4 },
+    { id: 5, name: "Cristiano Ronaldo", img: expert5 },
+    { id: 6, name: "Lionel Messi", img: expert6 },
 ]
 const Experts = () => {
     return (
-        <div className='container'>
+        <div className='container mt-5'>
 
             <h2 className='text-primary text-center'>Our Experts</h2>
 

@@ -6,7 +6,9 @@ const Register = () => {
 
     const handleRegister = e => {
         e.preventDefault()
-
+        const name = e.target.name.value;
+        const email = e.target.email.value;
+        const password = e.target.password.value;
     }
 
     return (
@@ -19,11 +21,11 @@ const Register = () => {
 
                     <br />
 
-                    <input type="email" name="name" id="" placeholder='Email Address' required />
+                    <input type="email" name="email" placeholder='Email Address' required />
 
                     <br />
 
-                    <input type="password" name="password" id="" placeholder='Password' required />
+                    <input type="password" name="password" placeholder='Password' required />
 
                     <br />
 

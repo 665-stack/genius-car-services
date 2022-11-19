@@ -43,7 +43,7 @@ const Header = () => {
 
                             {
                                 user ?
-                                    <button className='btn bg-warning border-0 px-3' onClick={handleSignOut}>Sign out</button>
+                                    <button className='btn bg-white border-0 px-3' onClick={handleSignOut}>Sign out</button>
                                     :
                                     <Nav.Link as={Link} to="/login">
                                         Login

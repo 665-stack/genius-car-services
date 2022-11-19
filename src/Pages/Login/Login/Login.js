@@ -13,14 +13,24 @@ const Login = () => {
 
     let from = location?.state?.from?.pathname || '/';
 
+    let errorElement;
+
     const [
         signInWithEmailAndPassword,
-        user
+        user,
+        loading,
+        error
     ] = useSignInWithEmailAndPassword(auth);
 
     if (user) {
         navigate(from, { replace: true });
     }
+    if (error) {
+        errorElement = <div>
+            <p className='text-danger'>Error: {error?.message}</p>
+        </div>
+    }
+
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -51,6 +61,9 @@ const Login = () => {
                     Submit
                 </Button>
             </Form>
+
+            {errorElement}
+
             <p className='mt-2'>New to Genius Car? <Link to='/register' className="text-danger text-decoration-none" >Please Register</Link></p>
             <SocialLogin></SocialLogin>
         </div>

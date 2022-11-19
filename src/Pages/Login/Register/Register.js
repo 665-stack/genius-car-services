@@ -8,9 +8,11 @@ import SocialLogin from '../SocialLogin/SocialLogin';
 const Register = () => {
     const [
         createUserWithEmailAndPassword,
-        user
+        user,
+        loading,
+        error
     ] = useCreateUserWithEmailAndPassword(auth);
-
+    let errorElement;
     const navigate = useNavigate()
 
     const handleRegister = e => {
@@ -25,6 +27,11 @@ const Register = () => {
     if (user) {
         navigate('/home')
         console.log(user);
+    }
+    if (error) {
+        errorElement = <div>
+            <p className='text-danger'>Error: {error?.message}</p>
+        </div>
     }
 
     return (
@@ -50,6 +57,7 @@ const Register = () => {
                 </div>
 
             </form>
+            {errorElement}
             <p className='text-center mt-1'>Already have an account? <Link to='/login' className="text-danger text-decoration-none" >Please Login</Link></p>
 
             <SocialLogin></SocialLogin>

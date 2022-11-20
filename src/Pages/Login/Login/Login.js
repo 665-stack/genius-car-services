@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import SocialLogin from '../SocialLogin/SocialLogin';
 
@@ -10,11 +10,7 @@ const Login = () => {
     const passwordRef = useRef('');
     const navigate = useNavigate()
     const location = useLocation()
-
     let from = location?.state?.from?.pathname || '/';
-
-    let errorElement;
-
     const [
         signInWithEmailAndPassword,
         user,
@@ -25,11 +21,10 @@ const Login = () => {
     if (user) {
         navigate(from, { replace: true });
     }
+    let errorElement;
     if (error) {
         errorElement = <p className='text-danger'>Error: {error?.message}</p>
-
     }
-
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -39,6 +34,16 @@ const Login = () => {
 
         console.log(email, password);
     }
+
+    // reset password
+    const [sendPasswordResetEmail, sending, error1] = useSendPasswordResetEmail(auth);
+
+    const resetPassword = async () => {
+        const email = emailRef.current.value;
+        await sendPasswordResetEmail(email)
+        alert('Sent email');
+    }
+
 
 
 
@@ -61,7 +66,10 @@ const Login = () => {
 
             {errorElement}
 
-            <p className='text-left'>New to Genius Car? <Link to='/register' className="text-danger text-decoration-none" >Please Register</Link></p>
+            <p className='text-left'>New to Genius Car? <Link to='/register' className="text-primary text-decoration-none" >Please Register</Link></p>
+
+            <p className='text-left mt-1'>Forget Password? <Link onClick={resetPassword} className="text-primary text-decoration-none" >Reset Password</Link></p>
+
             <SocialLogin></SocialLogin>
         </div>
     );

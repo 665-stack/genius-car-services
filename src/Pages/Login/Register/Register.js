@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import './Register.css';
@@ -6,6 +6,7 @@ import auth from '../../../firebase.init';
 import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Register = () => {
+    const [agree, setAgree] = useState(false)
     const [
         createUserWithEmailAndPassword,
         user,
@@ -20,8 +21,11 @@ const Register = () => {
         const name = e.target.name.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
+        // const agree = e.target.terms.checked;
+        if (agree) {
+            createUserWithEmailAndPassword(email, password)
+        }
 
-        createUserWithEmailAndPassword(email, password)
     }
 
     if (user) {
@@ -51,12 +55,21 @@ const Register = () => {
 
                     <br />
 
-                    <input className='mx-2' type="checkbox" name="terms" id="terms" />
-                    <label htmlFor="terms">Accept Terms and Condition</label>
+                    <input
+                        onClick={() => setAgree(!agree)}
+                        className='' type="checkbox" name="terms" id="terms" />
+
+                    {/* one type of system for conditional css */}
+                    {/* <label className={agree ? 'ps-2' : 'ps-2 text-danger'} htmlFor="terms">Accept Terms and Condition</label> */}
+
+                    {/* another type of system for conditional css  */}
+                    <label className={`ps-2 ${agree ? "" : 'text-danger'}`} htmlFor="terms">Accept Terms and Condition</label>
 
                     <br />
 
-                    <button className='w-50 mx-auto d-block mb-3 mt-2' type="submit">Register</button>
+                    <button
+                        disabled={!agree}
+                        className='w-50 mx-auto d-block mb-3 mt-2' type="submit">Register</button>
                 </div>
             </form>
 

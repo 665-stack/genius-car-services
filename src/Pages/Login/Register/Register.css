@@ -1,4 +1,4 @@
-.register-form {
+s.register-form {
     /* margin-top: 30px; */
 }
 
@@ -23,7 +23,7 @@
 }
 
 .register-form button:hover {
-    background-color: #085cdb;
+    /* background-color: #085cdb; */
 }
 
 @media (max-width: 576px) {

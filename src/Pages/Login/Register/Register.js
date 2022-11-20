@@ -29,16 +29,15 @@ const Register = () => {
         console.log(user);
     }
     if (error) {
-        errorElement = <div>
-            <p className='text-danger'>Error: {error?.message}</p>
-        </div>
+        errorElement = <p className='text-danger'>Error: {error?.message}</p>
+
     }
 
     return (
         <div className='container w-50 mx-auto'>
             <h2 className='text-primary text-center  mt-5'>Please Register</h2>
 
-            <form onSubmit={handleRegister} className='register-form'>
+            <form onSubmit={handleRegister} className='register-form mt-3'>
                 <div>
                     <input type="text" name='name' placeholder='Your Name' />
 
@@ -52,13 +51,13 @@ const Register = () => {
 
                     <br />
 
-                    <button type="submit">Register</button>
+                    <button className='w-50 mx-auto d-block mb-3' type="submit">Register</button>
 
                 </div>
 
             </form>
             {errorElement}
-            <p className='text-center mt-1'>Already have an account? <Link to='/login' className="text-danger text-decoration-none" >Please Login</Link></p>
+            <p className='text-left mt-1'>Already have an account? <Link to='/login' className="text-danger text-decoration-none" >Please Login</Link></p>
 
             <SocialLogin></SocialLogin>
 

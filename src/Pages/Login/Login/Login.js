@@ -26,9 +26,8 @@ const Login = () => {
         navigate(from, { replace: true });
     }
     if (error) {
-        errorElement = <div>
-            <p className='text-danger'>Error: {error?.message}</p>
-        </div>
+        errorElement = <p className='text-danger'>Error: {error?.message}</p>
+
     }
 
 
@@ -54,17 +53,15 @@ const Login = () => {
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Control ref={passwordRef} type="password" placeholder="Password" required />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                    <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group>
-                <Button variant="primary" type="submit">
-                    Submit
+
+                <Button variant="primary w-50 mx-auto d-block mb-3" type="submit">
+                    Login
                 </Button>
             </Form>
 
             {errorElement}
 
-            <p className='mt-2'>New to Genius Car? <Link to='/register' className="text-danger text-decoration-none" >Please Register</Link></p>
+            <p className='text-left'>New to Genius Car? <Link to='/register' className="text-danger text-decoration-none" >Please Register</Link></p>
             <SocialLogin></SocialLogin>
         </div>
     );

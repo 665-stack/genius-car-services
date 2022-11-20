@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import './Register.css';
 import auth from '../../../firebase.init';
 import SocialLogin from '../SocialLogin/SocialLogin';
@@ -12,24 +12,29 @@ const Register = () => {
         user,
         loading,
         error
-    ] = useCreateUserWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+
+    const [updateProfile, updating, updateError] = useUpdateProfile(auth);
+
     let errorElement;
     const navigate = useNavigate()
 
-    const handleRegister = e => {
+    const handleRegister = async (e) => {
         e.preventDefault()
         const name = e.target.name.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
         // const agree = e.target.terms.checked;
-        if (agree) {
-            createUserWithEmailAndPassword(email, password)
-        }
 
+        await createUserWithEmailAndPassword(email, password)
+
+        await updateProfile({ displayName: name });
+        console.log('Updated profile');
+
+        navigate('/')
     }
 
     if (user) {
-        navigate('/home')
         console.log(user);
     }
     if (error) {
@@ -69,7 +74,7 @@ const Register = () => {
 
                     <button
                         disabled={!agree}
-                        className='w-50 mx-auto d-block mb-3 mt-2' type="submit">Register</button>
+                        className='btn btn-primary w-50 mx-auto d-block mb-3 mt-2' type="submit">Register</button>
                 </div>
             </form>
 

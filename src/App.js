@@ -1,6 +1,6 @@
 import './App.css';
 import Header from './Shared/Header/Header';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import About from './Pages/About/About';
 import Home from './Pages/Home/Home/Home';
 import Footer from './Shared/Footer/Footer';
@@ -12,6 +12,7 @@ import Login from './Pages/Login/Login/Login';
 import Register from './Pages/Login/Register/Register';
 
 function App() {
+
   return (
     <div className="App">
       <Header></Header>
